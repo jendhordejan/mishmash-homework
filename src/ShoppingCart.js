@@ -34,8 +34,16 @@ module.exports = class {
     addProduct.name=name
     addProduct.quantity = quantity
     addProduct.pricePerUnit = pricePerUnit
-    this.items.push(addProduct)
+    this.items.push(addProduct) 
+  }
+
+  clear() {
+    const clearCart = this.items.forEach(element => this.items.pop());
     
+    return this.getItems() 
   }
 }
+
+
+
 
