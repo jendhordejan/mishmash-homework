@@ -1,9 +1,9 @@
 /*
 ### Assignment 1: ShoppingCart
 
-1. *You must create a module named `ShoppingCart`. The module must export a `class`! In other words your `module.exports` is not an object, a string, or anything else, but only a class.
-1. +Given a brand new instance of the class in a variable `cart`, calling `cart.getItems()` should return an empty array.
-1. The class should have a method `cart.addItem(itemName, quantity, price)`, which adds a new item to an internal array.
+1. **You must create a module named `ShoppingCart`. The module must export a `class`! In other words your `module.exports` is not an object, a string, or anything else, but only a class.
+1. **Given a brand new instance of the class in a variable `cart`, calling `cart.getItems()` should return an empty array.
+1. **The class should have a method `cart.addItem(itemName, quantity, price)`, which adds a new item to an internal array.
 1. After adding items, a call to `cart.getItems()` should return an array that includes the added items.
 1. Items in the array should be in this format:
    ```js
@@ -39,15 +39,3 @@ module.exports = class {
   }
 }
 
-// class Item {
-//   constructor(name, quantity, pricePerUnit){
-//     this.name = name
-//     this.quantity = quantity
-//     this.pricePerUnit = pricePerUnit
-//   }
-// }
-
-// class Product extends Item {
-//   super()
-
-// }
