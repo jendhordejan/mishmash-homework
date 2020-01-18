@@ -18,6 +18,8 @@ const fetchLukeSkyWalker = () => {
   })
 }
 
+
+
 const fetchDartVader = () => {
   // fetch example - works in the browser but not in node
   // (fetch is not a part of node.js by default)
@@ -25,13 +27,23 @@ const fetchDartVader = () => {
   .then(response => response.json()) // convert response to json
   .then(myJson => { // display data in the browser
     const display = document.getElementById("display")
-    
-
+  
     display.innerHTML = myJson.name
   })
 }
-
 const btnClicked = document.getElementById("fetch DarthVader")
 btnClicked.addEventListener("click", fetchDartVader)
+
+async function fetch_DartVader() {
+
+  const response = await fetch("https://swapi.co/api/people/4/");
+  const parsedResponse = await response.json();
+  const display = document.getElementById("display")
+  
+  display.innerHTML = parsedResponse.name
+}
+const btnClickedAsync = document.getElementById("fetch DarthVaderAsync")
+btnClickedAsync.addEventListener("click", fetch_DartVader)
+
 
 fetchLukeSkyWalker()

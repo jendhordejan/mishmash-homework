@@ -44,34 +44,66 @@
 */
 function groupAdultsByAgeRange(persons) {
 
-  const objAdultByAgeRange = {}
+  const groupByAgeCategory = {}
+  const adultPeopleOnly = persons.filter(person=>(person.age>17)) //filter out person under 18yo
+  if (adultPeopleOnly.length>0) {
+    
+    
+    const initialAccumulator = {
+      ["20 and younger"]: [],
+      ["21-30"]: [],
+      ["31-40"]: [],
+      ["41-50"]: [],
+      ["51 and older"]: []
+    }
 
-  if (persons.length>0) {
-    const adultPeopleOnly = persons.filter(person=>(person.age>17)) //filter out person under 18yo
-    //`20 and younger`
-    if (adultPeopleOnly.filter(person=>(person.age<=20 && person.age>17)).length>0){
-    objAdultByAgeRange["20 and younger"]=adultPeopleOnly.filter(person=>(person.age<=20 && person.age>18)) 
-    }
-    //`21-30`
-    if (adultPeopleOnly.filter(person=>(person.age>20 && person.age<=30)).length>0){
-    objAdultByAgeRange["21-30"]= adultPeopleOnly.filter(person=>(person.age>20 && person.age<=30))
-    }
-    //`31-40`
-    if (adultPeopleOnly.filter(person=>(person.age>30 && person.age<=40)).length>0){
-      objAdultByAgeRange["31-40"]= adultPeopleOnly.filter(person=>(person.age>30 && person.age<=40))
+  return adultPeopleOnly.reduce((groupByAgeCategory, currentPerson) => {
+      
+      //'20 and younger'
+      if (currentPerson.age<=20 && currentPerson.age>17) {
+          groupByAgeCategory["20 and younger"].push(currentPerson)
+          return groupByAgeCategory
       }
-    //'41-50'
-    if (adultPeopleOnly.filter(person=>(person.age>40 && person.age<=50)).length>0){
-      objAdultByAgeRange["41-50"]= adultPeopleOnly.filter(person=>(person.age>40 && person.age<=50))
+      //`21-30`
+      if (currentPerson.age>20 && currentPerson.age<=30) {
+        groupByAgeCategory["21-30"].push(currentPerson)
+        return groupByAgeCategory
       }
-    //'51 and older'
-    if (adultPeopleOnly.filter(person=>(person.age>50)).length>0){
-      objAdultByAgeRange["51 and older"]= adultPeopleOnly.filter(person=>(person.age>50))
-      }    
+      //`31-40`
+      if (currentPerson.age>30 && currentPerson.age<=40) {
+        groupByAgeCategory["31-40"].push(currentPerson)
+        return groupByAgeCategory
+      }
+      //'41-50'
+      if (currentPerson.age>40 && currentPerson.age<=50) {
+        groupByAgeCategory["41-50"].push(currentPerson)
+        return groupByAgeCategory
+      }
+      //'51 and older'
+      if (currentPerson.age>50) {
+        groupByAgeCategory["51 and older"].push(currentPerson)
+        return groupByAgeCategory
+      }
+
+
+      for (const property in groupByAgeCategory){
+        //console.log(`${property}: ${groupByAgeCategory[property]}--${groupByAgeCategory[property].length}`)
+          if (!groupByAgeCategory[property].length>0){
+            delete groupByAgeCategory[property];
+          }
+      }
+      return groupByAgeCategory
+    }, initialAccumulator)
+  
+
+
+   
   }
+
+
  
   
-  return objAdultByAgeRange
+  return groupByAgeCategory
   
 }
 
